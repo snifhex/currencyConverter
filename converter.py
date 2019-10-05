@@ -27,17 +27,24 @@ def convert(amount, desired_currency, conversion_rates):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) == 4:
         amount = sys.argv[1]
         base = sys.argv[2]
         to_currency = sys.argv[3]
+
+        rates = getRates(base)
+        result = convert(amount, to_currency, rates)
+        print(result)
+
+    elif len(sys.argv) == 2:
+        if sys.argv[1].upper() == "HELP":
+            print(availabe_currencies)
+
     else:
-        amount = int(input("[*]Enter amount >"))
-        base = input("[*]Enter Base Currency >").upper()
+        amount = int(input("[*]Enter amount > "))
+        base = input("[*]Enter Base Currency > ").upper()
         to_currency = input(
-            "[*]Enter the currency you need to convert in >").upper()
-
-    rates = getRates(base)
-    result = convert(amount, to_currency, rates)
-
-    print(result)
+            "[*]Enter the currency you need to convert in > ").upper()
+        rates = getRates(base)
+        result = convert(amount, to_currency, rates)
+        print(result)
