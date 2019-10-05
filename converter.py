@@ -20,7 +20,7 @@ def availabe_currencies(rates):
 def convert(amount, desired_currency, conversion_rates):
     converted_amount = float(
         conversion_rates[desired_currency]) * float(amount)
-    return converted_amount
+    return round(converted_amount, 2)
 
 
 if __name__ == "__main__":
