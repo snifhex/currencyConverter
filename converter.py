@@ -25,7 +25,7 @@ def convert(amount, desired_currency, conversion_rates):
 
 if __name__ == "__main__":
     if len(sys.argv) == 4:
-        amount = sys.argv[1].upper()
+        amount = sys.argv[1]
         base = sys.argv[2].upper()
         to_currency = sys.argv[3].upper()
 
