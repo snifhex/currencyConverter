@@ -7,13 +7,9 @@ import requests
 def getRates(base_curreny):
     url = f'https://api.ratesapi.io/api/latest?base={base_curreny}'
     api_response = requests.get(url)
-    if api_response.status_code == requests.codes.ok:
-        rates_json = api_response.json()
-        conversion_rates = rates_json['rates']
-        return conversion_rates
-    else:
-        print(
-            f"NetworkError: Response code from the server is {api_response.status_code}")
+    rates_json = api_response.json()
+    conversion_rates = rates_json['rates']
+    return conversion_rates
 
 
 def availabe_currencies(rates):
