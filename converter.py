@@ -4,8 +4,8 @@ import json
 import requests
 
 
-def getRates(base_curreny):
-    url = f'https://api.ratesapi.io/api/latest?base={base_curreny}'
+def getRates(base_currency, date='latest'):
+    url = f'https://api.ratesapi.io/api/{date}?base={base_currency}'
     api_response = requests.get(url)
     rates_json = api_response.json()
     conversion_rates = rates_json['rates']
@@ -24,7 +24,17 @@ def convert(amount, desired_currency, conversion_rates):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 4:
+    if len(sys.argv) == 5:
+        amount = sys.argv[1]
+        base = sys.argv[2].upper()
+        to_currency = sys.argv[3].upper()
+        date = sys.argv[4]
+
+        rates = getRates(base, date)
+        result = convert(amount, to_currency, rates)
+        print(result)
+
+    elif len(sys.argv) == 4:
         amount = sys.argv[1]
         base = sys.argv[2].upper()
         to_currency = sys.argv[3].upper()
