@@ -40,9 +40,9 @@ python converter.py
 
 Or get amount converted directly with optional arguments
 
-'''
+```
 python converter.py 45 EUR USD
 49.4055
-'''
+```
 
 This way it converts amount (45) from base currency (EUR) to target currency (USD)
