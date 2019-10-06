@@ -40,9 +40,28 @@ python converter.py
 
 Or get amount converted directly with optional arguments
 
-'''
+```
 python converter.py 45 EUR USD
 49.4055
-'''
+```
 
 This way it converts amount (45) from base currency (EUR) to target currency (USD)
+
+
+## Run in Docker
+
+Build image:
+
+```
+docker build -t currency_converter .
+```
+
+Run currency_converter:
+```
+docker run --rm -it currency_converter
+```
+
+Run easy_converter:
+```
+docker run --rm -it currency_converter python3 ./easy_converter.py
+```
