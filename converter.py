@@ -8,19 +8,27 @@ def getRates(base_currency, date='latest'):
     url = f'https://api.ratesapi.io/api/{date}?base={base_currency}'
     api_response = requests.get(url)
     rates_json = api_response.json()
-    conversion_rates = rates_json['rates']
-    return conversion_rates
+
+    if 'rates' in rates_json:
+        conversion_rates = rates_json['rates']
+        return conversion_rates
+    else:
+        error = rates_json['error'] if 'error' in rates_json else 'Unknown error'
+        raise ValueError(error)
 
 
-def availabe_currencies(rates):
+def available_currencies(rates):
     currencies = list(rates)
     return currencies
 
 
 def convert(amount, desired_currency, conversion_rates):
-    converted_amount = float(
-        conversion_rates[desired_currency]) * float(amount)
-    return round(converted_amount, 2)
+    if desired_currency in conversion_rates:
+        converted_amount = float(
+            conversion_rates[desired_currency]) * float(amount)
+        return round(converted_amount, 2)
+    else:
+        raise ValueError(f'No rate available for {desired_currency}')
 
 
 if __name__ == "__main__":
@@ -45,7 +53,7 @@ if __name__ == "__main__":
 
     elif len(sys.argv) == 2:
         if sys.argv[1].upper() == "HELP":
-            print(availabe_currencies)
+            print(available_currencies)
 
     else:
         amount = int(input("[*]Enter amount > "))
