@@ -41,11 +41,17 @@ python converter.py
 Or get amount converted directly with optional arguments
 
 ```
-python converter.py 45 EUR USD
+python converter.py -a 45 -b EUR -t USD
 49.4055
 ```
 
 This way it converts amount (45) from base currency (EUR) to target currency (USD)
+
+You can also get help with
+
+'''
+python converter.py -h
+'''
 
 
 ## How to use as a module in code
